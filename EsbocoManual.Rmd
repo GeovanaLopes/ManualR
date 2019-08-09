@@ -1,0 +1,188 @@
+---
+title: ""
+author: ""
+date: ""
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introdução
+
+O presente documento tem a funcionalidade de ser um material de apoio para os alunos da disciplinas EAD0752 da Faculdade de Economia, Administração e Contabilidade da Universidade de São Paulo.  
+O uso e a distribuição desse manual é livre e gratuito.  
+Este manual é resultado do Projeto de Ensino intitulado "Modelos Estatísticos na Área de Negócios" para  Programa Unificado de Bolsas (2018). O projeto ocrreu sob orientação da Prof Daielly Nassif Mantovani.  
+
+## R e RStudio
+
+### Como instalar
+
+### Atualizado o R e so RStudio
+
+## Como obter ajuda
+
+## Acessando bases de dados públicas
+
+## Atalhos úteis
+
+Atalhos de teclado são muitos úteis quando se trata do R, você pode encontrar todos esses atalhos em *Tools>Keyboards Shortcuts Help*.
+
+Ctrl + Enter #Roda a linha de código
+
+Alt - #Insere o símbolo para atribuição de variável "<-"
+
+Ctrl Shift m #Insere o comando *pipe* "%>%"
+
+# Conceitos Básicos
+
+## Operações Matemáticas Básicas
+
+Muito provavelmente, em algum momento, você precisará fazer algumas operações com o seu conjunto de dados. Para fazer isso, no R, é muito simples.
+
+```{r}
+# Soma
+1+4
+```
+
+```{r}
+# Subtração
+5-2
+```
+
+```{r}
+# Multiplicação
+4*5
+```
+
+```{r}
+#Divisão
+20/4
+```
+
+```{r}
+#Potenciação
+5^2
+```
+
+```{r}
+#Log
+
+log( 10 )   # Logaritmo natural ou neperiano
+
+log( 10, base = 10) # Log base 10
+
+log10(10) # Log base 10
+
+log( 5, base = 2.578) # Logaritmo base 2.578
+
+```
+
+```{r}
+exp(2)### revisar
+```
+
+```{r}
+#Raíz Quadrada
+sqrt(9)
+```
+
+```{r}
+#Módulo ou valor absoluto
+abs(-5)
+```
+
+```{r}
+#Seno
+sin(1)
+```
+```{r}
+#Cosseno
+cos(1)
+```
+```{r}
+#Tangente
+tan(1)
+```
+```{r}
+# Arco seno (em radianos)
+asin(1)       
+
+asin(1) / pi * 180
+```
+```{r}
+# Arco coseno (em radianos)
+acos(0)      
+
+acos(0) / pi * 180
+```
+```{r}
+# Arco tangente (em radianos)
+atan(1)    
+
+atan(1) / pi * 180
+
+```
+
+
+
+## Funções
+
+## Pacotes
+
+Pacotes são configuram uma importante parte do R. Apesar dessa linguagem ter bastante funções nativas e pacotes pré instalados, você dificilmente não usará um pacote.
+
+Os pacotes mais utilizados e populares são o ggplot2 (gráficos), tydiverse, ....
+
+Para usar um pacote, você precisa instalar e carregar esse pacote. A instalação é feita uma única vez, mas precisará carregá-lo sempre que for utilizar.
+
+Você pode carregar um *package* da seguinte forma:
+
+```{r}
+install.packages("ggplot2")
+```
+ OU 
+ 
+ ....
+ 
+ Para carregar, basta dar o seguinte comando:
+ 
+```{r}
+library(ggplot2)
+```
+ 
+
+## Boas Práticas
+
+* Tenha sempre um backup dos seus código e base de dados originais.
+* Comente os seus códigos, é só usar o "#". Isso é bom para você entender o seu código no futuro e também para que outras pessoas consigam interpretá-los.
+* Crie variáveis com nomes coerentes.
+* Tenha um código limpo e organizado, não use linhas de comando muito grandes.
+* Instale e carregue os pacotes no começo do seu script.
+
+
+# Leitura e Manipulação de Dados
+
+## NA
+
+# Visualização de Dados
+
+## Gráficos usando RBase
+
+## Gráficos usando ggplot2
+
+
+# Estatística
+
+## Estatística Básica
+
+## Teste de Hipóteses
+
+## Análise Discriminante
+
+# Algoritmos
+
+## Regressão Logística
+
+## KNN
