@@ -166,6 +166,26 @@ library(ggplot2)
 
 ## NA
 
+Basta qualquer valor NA (Not Available) ou NaN ( Not a Number) para que o R não faça nehuma operação. O que por um lado pode ser uma grande dor de cabeça, por outro, o aviso é válido servindo de alerta para que tratemos esses valores.
+
+Não existe uma única solução para tratar os NA's, isso vai depender do seu conjunto de dados, do seu conhecimento sobre eles e do que você disposto a perder em relação a eles. De qualquer forma, um NA é sempre um prejuízo.
+NA's podem ser oriundos de erro de digitação, perguntas não respondidas em pesquisas, "joisn" mal executados e por aí vai. Vale lembrar que, NA não é um zero. NA é NA e não sabemos ao certo o que ele é, pois é um valor faltante. Dito isso, vou listar algumas soluções para tratamentos de NA's, e cabe a você decidir o que vai fazer com eles.
+
+```{r}
+#testar!!!!
+dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,5,1,NA,4,1,NA))
+View(dat)
+table(dat)
+is.na(dat)
+na.omit(dat)
+na.exclude(dat$nota)
+View(dat)
+mean(dat$nota)
+dat$nota[is.na(dat$nota)] = mean
+View(dat)
+dat$nota[is.na(dat$nota)] = mean(dat$nota,na.rm=TRUE)
+```
+
 # Visualização de Dados
 
 ## Gráficos usando RBase
