@@ -1,0 +1,392 @@
+---
+title: ''
+author: ''
+date: ''
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introdução
+
+O presente documento tem a funcionalidade de ser um material de apoio para os alunos da disciplinas EAD0752 da Faculdade de Economia, Administração e Contabilidade da Universidade de São Paulo.  
+O uso e a distribuição desse manual é livre e gratuito.  
+Este manual é resultado do Projeto de Ensino intitulado "Modelos Estatísticos na Área de Negócios" para  Programa Unificado de Bolsas (2018). O projeto ocrreu sob orientação da Prof Daielly Nassif Mantovani.  
+
+## R e RStudio
+
+### Como instalar
+
+### Atualizado o R e so RStudio
+
+## Como obter ajuda
+
+A probabilidade de que alguém não precise de ajuda criando um script é baixíssima, até mesmo os mais experientes em algum momento precisam de ajuda com algo. O lado bom é que a comunidade R é muito colaborativa, o erro que está aparecendo na sua tela possivelmente já apareceu na tela de outra pessoa também.
+
+Mas como posso pedir ajuda?
+
+1. No próprio R:
+
+  + Utilizando a função *help(pacote)*
+  + Utilizando o equivalente *?pacote*  
+
+Ele trará a documentação do pacote e possívelmente algum exemplo de utilização.  
+
+  
+2. No Stackoverflow
+
+O https://stackoverflow.com/ e o https://pt.stackoverflow.com/ (português) são comunidades de perguntas e respostas sobre programação, incluindo o R, é claro.  
+
+Fique atento à algumas dicas:
+
++ Confira se a sua dúvida já não foi respondida em outro momento;
++ Seja claro na sua pergunta;
++ Dê um exemplo do código que está gerando o erro;
++ O seu exemplo precisa ser reprodutível para que outras pessoas o consigam testar e te ajudar.  
+
+
+3. Outras pessoas. Não tenha vergonha, tire sua dúvida com outras pessoas e ajude sempre que puder.
+
+
+4. Github e a comunidade do RStudio (https://community.rstudio.com/).
+
+
+## Acessando bases de dados públicas
+
+Nessa caminhada, as bases de dados serão suas aliada e há muitas que são públicas e de fácil acesso.    
+
+Você pode consegui-las no próprio R, com o comando *data()* ou *library(help = "datasets")*. Com ele você consegue ver uma lista de todas as bases de dados disponíveis no R e a descrição de cada uma delas.
+
+No Kaggle (https://www.kaggle.com/), que é uma plataforma de aprendizado e competição de ciência de dados, onde também é possível conseguir bases de dados para treino e aprendizado. 
+
+Além disso, há portais governamentais como, por exemplo, o dados.gov.br que disponibilizam dados para uso público.
+
+## Atalhos úteis
+
+Atalhos de teclado são muitos úteis quando se trata do R, você pode encontrar todos esses atalhos em *Tools>Keyboards Shortcuts Help*.
+
+Ctrl Enter #Roda a linha de código
+
+Alt - #Insere o símbolo para atribuição de variável "<-"
+
+Ctrl Shift m #Insere o comando *pipe* "%>%"
+
+# Conceitos Básicos
+
+## Operações Matemáticas Básicas
+
+Muito provavelmente, em algum momento, você precisará fazer algumas operações com o seu conjunto de dados. Para fazer isso, no R, é muito simples.
+
+```{r}
+# Soma
+1+4
+```
+
+```{r}
+# Subtração
+5-2
+```
+
+```{r}
+# Multiplicação
+4*5
+```
+
+```{r}
+#Divisão
+20/4
+```
+
+```{r}
+#Potenciação
+5^2
+```
+
+```{r}
+# resto da divisão de 5 por 3
+5 %% 4   
+```
+
+```{r}
+# parte inteira da divisão de 5 por 3
+5 %/% 4  
+```
+
+```{r}
+#Log
+
+log( 10 )   # Logaritmo natural ou neperiano
+
+log( 10, base = 10) # Log base 10
+
+log10(10) # Log base 10
+
+log( 5, base = 2.578) # Logaritmo base 2.578
+
+```
+
+```{r}
+exp(2)### revisar
+```
+
+```{r}
+#Raíz Quadrada
+sqrt(9)
+```
+
+```{r}
+#Módulo ou valor absoluto
+abs(-5)
+```
+
+```{r}
+#Seno
+sin(1)
+```
+```{r}
+#Cosseno
+cos(1)
+```
+```{r}
+#Tangente
+tan(1)
+```
+```{r}
+# Arco seno (em radianos)
+asin(1)       
+
+asin(1) / pi * 180
+```
+```{r}
+# Arco coseno (em radianos)
+acos(0)      
+
+acos(0) / pi * 180
+```
+```{r}
+# Arco tangente (em radianos)
+atan(1)    
+
+atan(1) / pi * 180
+
+```
+
+
+
+## Funções
+
+## Pacotes
+
+Pacotes são configuram uma importante parte do R. Apesar dessa linguagem ter bastante funções nativas e pacotes pré instalados, você dificilmente não usará um pacote.
+
+Os pacotes mais utilizados e populares são o ggplot2 (gráficos), tydiverse, ....
+
+Para usar um pacote, você precisa instalar e carregar esse pacote. A instalação é feita uma única vez, mas precisará carregá-lo sempre que for utilizar.
+
+Você pode instalar um *package* das seguintes formas:
+
+
+
+Pelo CRAN (Comprehensive R Archive Network), a forma mais usual;
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+
+
+Pelo Github;
+
+```{r, eval=FALSE}
+devtools::install_github("nome-do-repositorio/nome-do-pacote")
+```
+
+
+E também via arquivo.
+```{r, eval=FALSE}
+zip/.tar.gz: install.packages("C:/caminho/nome-do-pacote.zip", repos = NULL).
+```
+
+
+ Para carregar, basta dar o seguinte comando:
+ 
+```{r, eval=FALSE, warning=FALSE}
+library(nome-do-pacote)
+```
+ 
+
+## Boas Práticas
+
+* Tenha sempre um backup dos seus códigos e bases de dados originais.  
+* Comente os seus códigos, é só usar o "#". Isso é bom para você entender o seu código no futuro e também para que outras pessoas consigam interpretá-los.  
+* Crie variáveis com nomes coerentes.  
+* Tenha um código limpo, organizado e legível, não use linhas de comando muito grandes.  
+* Instale e carregue os pacotes no começo do seu script.  
+
+
+# Leitura e Manipulação de Dados
+Com o R você consegue ler e manipular diversos tipos de arquivos, como por exemplo, .csv(Comma separated values), tabelas, .xls, html, json, xml, pdf, SPSS entre outros.  
+ 
+!Lembre-se sempre de manipular o seu arquivo em modo de leitura e ter o original como backup!  
+ 
+**CSV**
+
+O CSV é um dos formatos de arquivos mais utilizados. Nesete formato o separador normalmente é uma vírgula ',' ou ponto e vírgula ';'. Ele pode ter um cabeçalho com os nomes das colunas ou não.  
+```{r, eval=FALSE}
+dataframe <- read.csv("Caminho-do-seu-arquivo.csv", header=TRUE)
+head(dataframe) #Mostra as 6 primeiras linhas do seu arquivo, incluindo o cabeçalho
+```
+
+**Table**
+Lendo arquivos em formato de tabela.  
+```{r, eval=FALSE}
+tabela1 <- read.table("Caminho-do-seu-arquivo.txt", header=TRUE, sep="\t") #Arquivo separado por TAB
+tabela2 <- read.table("Caminho-do-seu-arquivo.csv", header=TRUE, sep=",") #Aruivo separado por vírgula
+tabela3 <- read.table("Caminho-do-seu-arquivo.txt", skip=4, header=TRUE, sep="\t") #O argumento 'skip' indica quantas linhas pular, caso necessário
+
+
+
+```
+
+**XLS**
+
+```{r, eval=FALSE}
+install.packages("xlsx")
+library(xlsx)
+
+data <- read.xlsx("Caminho-do-seu-arquivo.xlsx", "Nome-da-aba")
+```
+
+**Excel**
+
+```{r, eval=FALSE}
+exl <- read_excel("Caminho-do-seu-arquivo.xlsx", 
+                 sheet = "nome-da-aba", col_types = c("date", "text", "text", 
+                                                       "numeric", "numeric", "text"))
+
+#Indique a aba apenas se necessário
+#'col_types' discrimina o tipo de variável em cada coluna.
+```
+
+
+Você também pode importar os dados manualmente.
+## NA
+
+Basta qualquer valor NA (Not Available), NaN ( Not a Number) ou NULL (sem valor, diferente de NA pu NaN) para que o R não faça nehuma operação e retorne um erro. ~~O que por um lado pode ser uma grande dor de cabeça, por outro, o aviso é válido servindo de alerta para que tratemos esses valores.~~  
+
+Observações válidas:
+
+* NA é *Not Available* (value). NaN é *Not a Number* (value).
+
+* NaN é um NA, masut NA não é um NaN.
+
+* NA e NaN têm comprimento 1.
+
+* NULL é um objeto especial com comprimento 0.
+
+* NA não é um número 0
+
+Não existe uma única solução para tratar os NA's, isso vai depender do seu conjunto de dados, do seu conhecimento sobre eles e do que você está disposto a perder em relação a eles.  
+NA's podem ser oriundos de erro de digitação, perguntas não respondidas em pesquisas, ~~"joins" mal executados~~ e por aí vai.  
+
+Dito isso, vou listar algumas opções para tratamentos de NA's, e cabe a você decidir o que vai fazer eles.  
+
+
+
+Inicialmente, vamos criar um data frame pequeninho, com alguns NA's, só para testar as funções.
+
+
+
+```{r}
+dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,5,1,NA,4,1,NA),nota2=c(5,9,2,8,3,1,7))
+```
+
+
+Agora precisamos investigar se há algum NA ou não.
+
+```{r}
+which(is.na(dat)) #retona a posição das variáveis que contêm NA.
+```
+```{r}
+
+is.na(dat) #retorna TRUE ou FALSE em cada uma das variáveis do seu data frame. Não é muito prático quando se tem um conjunto de dados muito grande.
+```
+
+```{r}
+
+is.null(dat) #Verifica se o valor é nulo
+
+```
+
+Agora que já investigamos os nossos dados e percebemos que há de fato observações com NA, vamos fazer algumas transformações no nosso data frame.
+
+```{r, eval=FALSE}
+na.omit(dat) #Omite os NA's do data frame
+
+na.exclude(dat$nota) #Exclui os NA da voluna NOTA
+
+dat[complete.cases(dat$nota),] #Retorna apenas os casos completos, é o mesmo que na.omit()
+```
+
+Podemos também, substituir os valores faltantes pela média da coluna.
+
+**Note que o comando na.rm=TRUE remove o NA para e fazer a operação desejada**
+
+```{r,eval=FALSE}
+dat[is.na(dat$nota)] = mean(dat$nota,na.rm=TRUE) 
+dat
+```
+
+
+Substituindo por um número escolhido, nesse caso o 10.
+
+```{r}
+dat$nota[is.na(dat$nota)] = 10 #As observações com NA agora serão o número 10.
+```
+
+Com uma abordagem mais avançada, poderíamos também prever o valor dos NA, Nan ou Null e substituí-los por essa estimativa.  
+```{r, warning=FALSE}
+library(dplyr)
+
+dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,9,1,NA,4,1,NA),nota2=c(5,9,2,8,5,1,7))
+
+dat2 <- na.omit(dat) #omitindo os nas
+
+l <- lm(dat2$nota~dat2$nota2+dat2$satisfacao) # criando uma regressão
+
+df <- dat %>% 
+  mutate(nota=ifelse(is.na(nota), predict(l,.), nota))  # Substituindo NA pelo valor previsto na regressão
+
+df
+
+```
+
+# Visualização de Dados
+
+## Tabelas
+
+## Gráficos usando RBase
+
+## Gráficos usando ggplot2
+
+# Estatística
+
+## Estatística Básica
+
+## Teste de Hipóteses
+
+## Análise Discriminante
+
+# Algoritmos
+
+## Regressão Logística
+
+## KNN
+
+# Referências
+
+http://rstudio-pubs-static.s3.amazonaws.com/261838_71b13475011340ab94e9c51d8e462080.html
+
