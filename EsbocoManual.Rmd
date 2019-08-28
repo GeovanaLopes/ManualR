@@ -658,3 +658,9 @@ https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html
 
 https://bookdown.org/wevsena/curso_r_tce/curso_r_tce.html#instalando-pacotes-no-r #consulta|Apagar depois, ou não!
 
+# Rascunho
+
+m<- mtcars
+basicStats(m$mpg)
+skewness(m$mpg) #assimetria
+kurtosis(m$mpg) #curtose
