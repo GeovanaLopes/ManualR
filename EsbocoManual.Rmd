@@ -67,13 +67,8 @@ Além disso, há portais governamentais como, por exemplo, o dados.gov.br que di
 
 ## Atalhos úteis
 
-Atalhos de teclado são muitos úteis quando se trata do R, você pode encontrar todos esses atalhos em *Tools>Keyboards Shortcuts Help*.
+Atalhos de teclado são muitos úteis quando se trata do R, você pode encontrar todos esses atalhos em *Tools > Keyboards Shortcuts Help* ou 'Alt Shift K'.
 
-Ctrl Enter #Roda a linha de código
-
-Alt - #Insere o símbolo para atribuição de variável "<-"
-
-Ctrl Shift m #Insere o comando *pipe* "%>%"
 
 # Conceitos Básicos
 
@@ -107,12 +102,12 @@ Muito provavelmente, em algum momento, você precisará fazer algumas operaçõe
 ```
 
 ```{r}
-# resto da divisão de 5 por 3
-5 %% 4   
+# resto da divisão de 5 por 2
+5 %% 2   
 ```
 
 ```{r}
-# parte inteira da divisão de 5 por 3
+# parte inteira da divisão de 5 por 4
 5 %/% 4  
 ```
 
@@ -194,7 +189,7 @@ Você pode instalar um *package* das seguintes formas:
 Pelo CRAN (Comprehensive R Archive Network), a forma mais usual;
 
 ```{r, eval=FALSE}
-install.packages("ggplot2")
+install.packages("nome-do-pacote")
 ```
 
 
@@ -268,9 +263,13 @@ O CSV é um dos formatos de arquivos mais utilizados. Nesete formato o separador
 
 
 ```{r, eval=FALSE}
-dataframe <- read.csv("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ,
-dataframe2 <- read.csv2("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ;
-head(dataframe) #Mostra as 6 primeiras linhas do seu arquivo, incluindo o cabeçalho
+arq <- read.csv("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ,
+
+arq2 <- read.csv2("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ;
+
+arq3 <- read.delim("Caminho-do-seu-arquivo.csv", header=TRUE, sep = "Insira o separadador") #Delim lê qualquer separador, basta indicar
+
+head(arq) #Mostra as 6 primeiras linhas do seu arquivo, incluindo o cabeçalho
 ```
 
 
@@ -311,7 +310,7 @@ Para finalizar, clique em "Import"
 
 ## Manipulação de Dados
 
-Para a parte de manipulação de dados iremos utlizar o pacote **dplyr**, que é muito utilizado hoje em dia e também muito útil.  
+Para a parte de manipulação de dados iremos usar o pacote **dplyr**, que é muito utilizado hoje em dia e também muito útil.  
 
 O dplyr faz parte do tidyverse, um ecossistema de pacotes projetados com APIs comuns e uma filosofia compartilhada.  
 
@@ -341,7 +340,7 @@ Vocês notarão nos exemplos a seguir, o comando "%>%". Este é o pipe.
 
 O atalho de teclado para chamar ele é o "CTRL SHIFT m".  
 
-Esse comando cria uma ordenação, é como se o argumento da esquerda puxasse o da direita através do pipe. Com os códigos o entendimento do que o pipe faz acaba sendo mais claro e intuitivo.  
+Esse comando cria uma ordenação, é como se o argumento da esquerda puxasse o da direita através do pipe. Com os códigos, o entendimento do que o pipe faz acaba sendo mais claro e intuitivo.  
 
 
 **Instalando e carregando o pacote**
@@ -594,13 +593,28 @@ par(mfrow=c(numero de linhas,numero de colunas))
 ```{r}
 attach(anscombe)
 par(mfrow=c(2,2)) #2 linhas e 2 colunas
+
 plot(x1)
+
 plot(x2)
+
 plot(x3)
+
 plot(x4)
+
 ```
 
 *Abline ( )*
+
+```{r}
+attach(anscombe)
+
+plot(x1,y1)
+
+abline(lm(y1~x1), col="blue")
+
+```
+
 
 *Boxplot*
 
@@ -641,4 +655,6 @@ https://dplyr.tidyverse.org/
 http://material.curso-r.com/manip/
 
 https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html
+
+https://bookdown.org/wevsena/curso_r_tce/curso_r_tce.html#instalando-pacotes-no-r #consulta|Apagar depois, ou não!
 
