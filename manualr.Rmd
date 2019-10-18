@@ -1,0 +1,805 @@
+---
+title: "Manual R"
+author: ''
+date: ''
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introdução
+
+O presente documento tem a funcionalidade de ser um material de apoio para os alunos da disciplinas EAD0752 da Faculdade de Economia, Administração e Contabilidade da Universidade de São Paulo.  
+O uso e a distribuição desse manual é livre e gratuito.  
+Este manual é resultado do Projeto de Ensino intitulado "Modelos Estatísticos na Área de Negócios" para  Programa Unificado de Bolsas (2018). O projeto ocorreu sob orientação da Prof Daielly Nassif Mantovani.  
+
+## R e RStudio
+
+O R e o RStudio são softwares gratuitos, que oferecem um vasto campo de aplicações e vêm sendo cada vez mais utilizados pela comunidade de Estatística e Ciência de Dados. Ambos já têm distribuições compiladas para Linux, Mac OS e Windows.
+
+Lembrando que, para utilizar o RStudio, é necessário que o R já esteja instalado.
+
+
+### Instalando o R e o RStudio
+
+
+Para instalar o R, baixe a versão compatível com o seu computador em: https://cloud.r-project.org/
+
+O R, por padrão, vem com uma interface gráfica para o usuário (Graphical User Interface – GUI).
+
+![RGUI](ManualR/imagens/RGUI.png)
+
+O Rstudio tem algumas vantagens em relação ao RGUI, como por exemplo:
+
+* Autocomplete;
+* Match automático de parenteses e chaves;
+* Interface intuitiva para objetos, gráficos e script;
+* Criação de “projetos” com interface para controle de versão;
+* Facilidade na criação de pacotes;
+* Interação com HTML, entre outras.
+
+
+Para instalar o RStudio, baixe a versão adequada para seu computador em: https://www.rstudio.com/products/rstudio/download/
+
+![RStudio](ManualR/imagens/rstudio.png)
+
+* Editor/Scripts: é onde você escreverá os seus códigos;
+* Console: é onde você verá a maior parte dos resultados dos seus código;
+* Environment: painel com todos os objetos criados na sessão.
+* Output:
+   + Files: mostra os arquivos no diretório de trabalho.
+   + Plots: painel onde você verá os seus gráficos.
+   + Help: janela onde a documentação das funções serão apresentadas.
+   + Packages: onde você verá os seus pacotes instalados.
+
+
+### Atualizado o R e o RStudio
+
+Para atualizar o R, você pode dar o seguinte comando:
+
+```{r, eval=FALSE}
+
+install.packages("installr")
+library (installr)
+
+updateR() #Atualiza a versão do R
+
+```
+
+Para atualizar o RStudio, é necessário acessar a página de download e baixar a versão mais recente.
+https://www.rstudio.com/products/rstudio/download/
+
+Você pode verificar se há atualizações disponíveis em *Help > Check for Updates* na barra superior da sua tela do RStudio.
+
+## Como obter ajuda
+
+A probabilidade de que alguém não precise de ajuda criando um script é baixíssima, até mesmo os mais experientes em algum momento precisam de ajuda com algo. O lado bom é que a comunidade R é muito colaborativa, o erro que está aparecendo na sua tela possivelmente já apareceu na tela de outra pessoa também.
+
+Mas como posso pedir ajuda?
+
+1. No próprio R:
+
+  + Utilizando a função *help(pacote)*
+  + Utilizando o equivalente *?pacote*  
+
+Ele trará a documentação do pacote e possívelmente algum exemplo de utilização.  
+
+  
+2. No Stackoverflow
+
+O https://stackoverflow.com/ e o https://pt.stackoverflow.com/ (português) são comunidades de perguntas e respostas sobre programação, incluindo o R, é claro.  
+
+Fique atento à algumas dicas:
+
++ Confira se a sua dúvida já não foi respondida em outro momento;
++ Seja claro na sua pergunta;
++ Dê um exemplo do código que está gerando o erro;
++ O seu exemplo precisa ser reprodutível para que outras pessoas o consigam testar e te ajudar.  
+
+
+3. Outras pessoas. Não tenha vergonha, tire sua dúvida com outras pessoas e ajude sempre que puder.
+
+
+4. Github e a comunidade do RStudio (https://community.rstudio.com/).
+
+
+5. Cheatsheets são folhas de dicas muito úteis, tanto para aprender como usar recursos, como para se ter como folha de cola. Descubra as Cheatsheets em *Help>Cheatsheets*.
+
+
+## Acessando bases de dados públicas
+
+Nessa caminhada, as bases de dados serão suas aliada e há muitas que são públicas e de fácil acesso.    
+
+Você pode consegui-las no próprio R, com o comando *data()* ou *library(help = "datasets")*. Com ele você consegue ver uma lista de todas as bases de dados disponíveis no R e a descrição de cada uma delas.
+
+No Kaggle (https://www.kaggle.com/), que é uma plataforma de aprendizado e competição de ciência de dados, onde também é possível conseguir bases de dados para treino e aprendizado. 
+
+Além disso, há portais governamentais como, por exemplo, o dados.gov.br que disponibilizam dados para uso público.
+
+## Atalhos úteis
+
+Atalhos de teclado são muitos úteis quando se trata do R, você pode encontrar todos esses atalhos em *Tools > Keyboards Shortcuts Help* ou 'Alt Shift K'. Os principais atalhos de teclado são:
+
+
+* CTRL+ENTER: roda a linha selecionada no script.
+* ALT+-: (<-) sinal de atribuição.
+* CTRL+SHIFT+M: (%>%) operador pipe.
+* CTRL+1: muda o cursor para o script.
+* CTRL+2: muda o cursor para o console.
+
+
+# Conceitos Básicos
+
+## Operações Matemáticas/Estatísticas Básicas
+
+Muito provavelmente, em algum momento, você precisará fazer algumas operações com o seu conjunto de dados. Para fazer isso, no R, é muito simples.
+
+Veremos abaixo alguns cálculos matemáticos e estátisticos básicos:
+
+
+```{r}
+# Soma
+1+4
+```
+
+```{r}
+# Subtração
+5-2
+```
+
+```{r}
+# Multiplicação
+4*5
+```
+
+```{r}
+#Divisão
+20/4
+```
+
+```{r}
+#Potenciação
+5^2
+```
+
+```{r}
+# resto da divisão de 5 por 2
+5 %% 2   
+```
+
+```{r}
+# parte inteira da divisão de 5 por 4
+5 %/% 4  
+```
+
+```{r}
+#Log
+
+log( 10 )   # Logaritmo natural ou neperiano
+
+log( 10, base = 10) # Log base 10
+
+log10(10) # Log base 10
+
+log( 5, base = 2.578) # Logaritmo base 2.578
+
+```
+
+```{r}
+exp(2)### revisar
+```
+
+```{r}
+#Raíz Quadrada
+sqrt(9)
+```
+
+```{r}
+#Módulo ou valor absoluto
+abs(-5)
+```
+
+Para as funções abaixo, criaremos um pequeno conjunto de dados.
+
+```{r}
+meus_dados1 <- c(1,2,3,4,5,6,7,8,9,10)
+
+meus_dados2 <- c(3,8,4,2,9,7,22,8,90,46)
+
+```
+
+```{r}
+summary(meus_dados1)
+
+#Essa função traz um resumo dos dados
+```
+
+```{r}
+mean(meus_dados1) #Média
+```
+
+```{r}
+sd(meus_dados1) #Desvio Padrão
+```
+
+```{r}
+# Valor máximo e mínimo, respectivamente
+max(meus_dados1)
+min(meus_dados1)
+```
+
+```{r}
+median(meus_dados1)
+```
+
+```{r}
+# Quartis
+quantile(meus_dados1)
+```
+
+```{r}
+cor(meus_dados1, meus_dados2) #Correlação linear entre os dados
+```
+
+```{r}
+var(meus_dados1) #Variância 
+
+```
+
+```{r}
+cov(meus_dados1, meus_dados2) #Covariância
+```
+
+
+O pacote "stats", nativo do R, traz inúmeras funções estatístiscas. Para consultar essa lista de funções, rode a linha *library(help = "stats")* e conheça todas elas.
+
+## Funções
+
+## Pacotes
+
+Pacotes são configuram uma importante parte do R. Apesar dessa linguagem ter bastante funções nativas e pacotes pré instalados, você dificilmente não usará um pacote.
+
+Os pacotes mais utilizados e populares são o ggplot2 (gráficos), tydiverse, ....
+
+Para usar um pacote, você precisa instalar e carregar esse pacote. A instalação é feita uma única vez, mas precisará carregá-lo sempre que for utilizar.
+
+Você pode instalar um *package* das seguintes formas:
+
+
+
+Pelo CRAN (Comprehensive R Archive Network), a forma mais usual;
+
+```{r, eval=FALSE}
+install.packages("nome-do-pacote")
+```
+
+
+Pelo Github;
+
+```{r, eval=FALSE}
+devtools::install_github("nome-do-repositorio/nome-do-pacote")
+```
+
+
+E também via arquivo.
+```{r, eval=FALSE}
+zip/.tar.gz: install.packages("C:/caminho/nome-do-pacote.zip", repos = NULL).
+```
+
+
+ Para carregar, basta dar o seguinte comando:
+ 
+```{r, eval=FALSE, warning=FALSE}
+library(nome-do-pacote)
+```
+ 
+
+## Boas Práticas
+
+* Tenha sempre um backup dos seus códigos e bases de dados originais.  
+* Comente os seus códigos, é só usar o "#". Isso é bom para você entender o seu código no futuro e também para que outras pessoas consigam interpretá-los.  
+* Crie variáveis com nomes coerentes.  
+* Tenha um código limpo, organizado e legível, não use linhas de comando muito grandes.  
+* Instale e carregue os pacotes no começo do seu script.  
+
+
+# Leitura e Manipulação de Dados
+
+A etapa de manipulação e limpeza dos dados é uma das mais importantes quando se trata de análise e ciência de dados. É também a mais trabalhosa e chata. Sim, pode ser meio chato mesmo, mas alguns pacotes e técnicas podem ajudar nesse processo.
+
+## Leitura de Dados  
+
+
+Com o R você consegue ler e manipular diversos tipos de arquivos, como por exemplo, .csv(Comma separated values), tabelas, .xls, html, json, xml, pdf, SPSS entre outros.  
+ 
+!Lembre-se sempre de manipular o seu arquivo em modo de leitura e ter o original como backup!  
+
+**Arquivos de texto**
+
+```{r, eval=FALSE}
+texto <- readLines("Nome-do-seu-arquivo.txt") #Lê o seu aquivo de texto
+
+text02 <- readLines("Nome-do-seu-arquivoo.txt",2) #Lê apenas 2 linhas do seu arquivo de texto
+
+text03  <- readLines(file.choose()) # O 'file.choose' abre a janela de arquivos do seu computador para que você ecolha o documento
+```
+
+
+**Tabela**
+
+
+Lendo arquivos em formato de tabela.  
+```{r, eval=FALSE}
+tabela1 <- read.table("Caminho-do-seu-arquivo.txt", header=TRUE, sep="\t") #Arquivo separado por TAB
+tabela2 <- read.table("Caminho-do-seu-arquivo.csv", header=TRUE, sep=",") #Aruivo separado por vírgula
+tabela3 <- read.table("Caminho-do-seu-arquivo.txt", skip=4, header=TRUE, sep="\t") #O argumento 'skip' indica quantas linhas pular, caso necessário
+
+
+
+```
+ 
+**CSV e separadores**
+
+O CSV é um dos formatos de arquivos mais utilizados. Nesete formato o separador normalmente é uma vírgula ',' (csv) ou ponto e vírgula ';' (csv2). Ele pode ter um cabeçalho com os nomes das colunas ou não.  
+
+
+```{r, eval=FALSE}
+arq <- read.csv("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ,
+
+arq2 <- read.csv2("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ;
+
+arq3 <- read.delim("Caminho-do-seu-arquivo.csv", header=TRUE, sep = "Insira o separadador") #Delim lê qualquer separador, basta indicar
+
+head(arq) #Mostra as 6 primeiras linhas do seu arquivo, incluindo o cabeçalho
+```
+
+
+**XLS**
+
+```{r, eval=FALSE}
+install.packages("xlsx")
+library(xlsx)
+
+data <- read.xlsx("Caminho-do-seu-arquivo.xlsx", "Nome-da-aba")
+```
+
+**Excel**
+
+```{r, eval=FALSE}
+exl <- read_excel("Caminho-do-seu-arquivo.xlsx", 
+                 sheet = "nome-da-aba", 
+                 col_types = c("date", "text", "text", "numeric", "numeric", "text"))
+
+#Indique a aba apenas se necessário
+#'col_types' discrimina o tipo de variável em cada coluna.
+```
+
+
+
+**Você também pode importar os dados manualmente. ** 
+
+Para isso, vá em 'Files e clique no arquivo desejado com o botão esquerdo. Em seguida clique em 'Import Dataset...'.  
+![](ManualR/imagens/importmanual.png)
+Abrirá uma tela onde você pode alterar o seu documento, como por exemplo, o tipo de variável de cada coluna.  
+
+Aparecerá também, uma prévia do seu código de importação dos dados.
+
+Para finalizar, clique em "Import"
+
+![](ManualR/imagens/tela2importmanual.png)
+
+
+
+## Manipulação de Dados
+
+Para a parte de manipulação de dados iremos usar o pacote **dplyr**, que é muito utilizado hoje em dia e também muito útil.  
+
+O dplyr faz parte do tidyverse, um ecossistema de pacotes projetados com APIs comuns e uma filosofia compartilhada.  
+
+Lembrando que também é possível manipular dados com o RBase, mas os pacotes deixam esse tipo de tarefa mais fácil.  
+
+
+
+![Data Transformation with dplyr :: Cheat Sheet](ManualR/imagens/csdplyr.png)
+
+
+Vamos falar um pouco sobre as principais funções desse pacote:
+
+* filter( ) - filtro, funciona como o filtro do excel e de outras ferramentas;
+* select( ) - seleciona colunas;
+* mutate( ) - cria/modifica colunas;
+* arrange( ) - ordena a base de acordo com o critério determinado;
+* summarise( ) - sumariza a base;
+* count( ) - também pode ser usada para sumarizar em relação à frequência;
+* group_by( ) - agrupamento.
+ 
+
+*Algumas dessas funções fazem mais sentido quando utilizadas em conjunto com outras*
+
+**Importante!!!**
+
+Vocês notarão nos exemplos a seguir, o comando "%>%". Este é o pipe.  
+
+O atalho de teclado para chamar ele é o "CTRL SHIFT m".  
+
+Esse comando cria uma ordenação, é como se o argumento da esquerda puxasse o da direita através do pipe. Com os códigos, o entendimento do que o pipe faz acaba sendo mais claro e intuitivo.  
+
+
+**Instalando e carregando o pacote**
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("tidyverse") # A forma mais fácil, pois instalada todos os recursos do tidyverse
+
+install.packages("dplyr") #Instala apenas o dplyr
+
+devtools::install_github("tidyverse/dplyr") ## Ou pode instalar puxando do github
+```
+```{r, message=FALSE,warning=FALSE}
+library(dplyr) #Carregando o pacote
+```
+
+Para testar algumas funções, vamos usar o dataset "iris" , que faz parte dos datasets pré-carregados do R.
+
+```{r}
+dados <- iris #Carregando o dataset
+```
+
+
+**Filter ( )**
+
+```{r}
+virginic <- dados %>% filter(Species=="virginica") #Filtrando apenas virginica na coluna de espécies
+ 
+head(virginic) #Visualizando as 6 primeiras linhas
+```
+
+
+**Select ( )**
+
+```{r}
+selecionando <- dados %>% select(Species, Petal.Width) #Selecionando apenas 2 colunas
+ 
+head(selecionando) #Visualizando as 6 primeiras linhas
+```
+
+
+**Mutate ( )**
+
+```{r}
+diferenca <- dados %>% mutate(dif = Sepal.Width - Petal.Width) #Criando uma coluna a partir de um cálculo, nova coluna "dif"
+
+head(diferenca) #Visualizando as 6 primeiras linhas
+```
+
+
+**Arrange ( )**
+
+```{r}
+crescente <- dados %>% arrange(Petal.Width) #Ordenando de forma crescente a partir da coluna selecionada
+
+head(crescente) #Visualizando as 6 primeiras linhas
+
+descrescente <- dados %>% arrange(desc(Petal.Width)) #Ordenando de forma decrescente
+
+head(descrescente) #Visualizando as 6 primeiras linhas
+```
+
+
+**Sumarise ( )**
+
+```{r}
+suma <- dados %>% summarise(sumarizando=mean(Petal.Width))
+head(suma)
+
+```
+
+**Count ( )**
+
+```{r}
+contador <- dados %>% count(Species) #Contagem de espécies
+
+contador
+```
+
+
+**Group_by ( )**
+
+```{r}
+grupo <- dados %>% group_by(Species)
+
+head(grupo)
+```
+
+*O group_by faz mais sentido quando utilizado em conjunto com outros comandos*
+
+```{r}
+agrupando <- dados %>% group_by(Species) %>% summarise(media=mean(Petal.Width)) #Agrupanado especies e calculando a média da variável "Petal,Width"
+
+agrupando #Visualizando o agrupamento
+```
+
+
+
+O **dplyr** tem várias outras funções, que são muito úteis no dia a dia e facilitam muito a manipulação de dados. Vale a pena pesquisar e explorar as inumeras possibilidades que o pacote traz.
+
+
+## NA
+
+Basta qualquer valor NA (Not Available), NaN ( Not a Number) ou NULL (sem valor, diferente de NA ou NaN) para que o R não faça nehuma operação e retorne um erro. ~~O que por um lado pode ser uma grande dor de cabeça, por outro, o aviso é válido servindo de alerta para que tratemos esses valores.~~  
+
+Observações válidas:
+
+* NA é *Not Available* (value). NaN é *Not a Number* (value).
+
+* NaN é um NA, masut NA não é um NaN.
+
+* NA e NaN têm comprimento 1.
+
+* NULL é um objeto especial com comprimento 0.
+
+* NA não é um número 0
+
+Não existe uma única solução para tratar os NA's, isso vai depender do seu conjunto de dados, do seu conhecimento sobre eles e do que você está disposto a perder em relação a eles.  
+NA's podem ser oriundos de erro de digitação, perguntas não respondidas em pesquisas e uma série de outros fatores.
+
+Dito isso, vou listar algumas opções para tratamentos de NA's, e cabe a você decidir o que vai fazer eles.  
+
+
+
+Inicialmente, vamos criar um data frame pequenininho, com alguns NA's, só para testar as funções.
+
+
+
+```{r}
+dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,5,1,NA,4,1,NA),nota2=c(5,9,2,8,3,1,7))
+
+dat #Visualizando o dataframe
+```
+
+
+Agora precisamos investigar se há algum NA ou não.  
+
+
+```{r}
+which(is.na(dat)) #retona a posição das variáveis que contêm NA.
+```
+```{r}
+
+is.na(dat) #retorna TRUE ou FALSE em cada uma das variáveis do seu data frame. Não é muito prático quando se tem um conjunto de dados muito grande.
+```
+
+```{r}
+
+is.null(dat) #Verifica se o valor é nulo
+
+```
+
+Agora que já investigamos os nossos dados e percebemos que há de fato observações com NA, vamos fazer algumas transformações no nosso data frame.  
+
+
+```{r, eval=FALSE}
+na.omit(dat) #Omite os NA's do data frame
+
+na.exclude(dat$nota) #Exclui os NA da voluna NOTA
+
+dat[complete.cases(dat$nota),] #Retorna apenas os casos completos, é o mesmo que na.omit()
+```
+
+Podemos também, substituir os valores faltantes pela média da coluna.
+
+**Note que o comando na.rm=TRUE remove o NA para fazer a operação desejada**  
+
+
+```{r,eval=FALSE}
+dat[is.na(dat$nota)] = mean(dat$nota,na.rm=TRUE) 
+dat
+```
+
+
+Substituindo por um número escolhido, nesse caso o 10.  
+
+
+
+```{r}
+dat$nota[is.na(dat$nota)] = 10 #As observações com NA agora serão o número 10.
+```
+
+Com uma abordagem um pouco mais avançada, poderíamos também, prever o valor dos NA, Nan ou Null e substituí-los por essa estimativa. 
+
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+
+dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,9,1,NA,4,1,NA),nota2=c(5,9,2,8,5,1,7))
+
+dat2 <- na.omit(dat) #omitindo os nas
+
+l <- lm(dat2$nota~dat2$nota2+dat2$satisfacao) # criando uma regressão
+
+df <- dat %>% 
+  mutate(nota=ifelse(is.na(nota), predict(l,.), nota))  # Substituindo NA pelo valor previsto na regressão
+
+df
+
+```
+
+
+## Criando arquivos
+
+Agora que a leitura e manipulação de dados já foi feita, você já pode criar e exportar o seu arquivo com eles. Serão apresentados alguns exemplos básicos de como exportar dados no R, mas você pode explorar outras opções com pacotes e funções adicionais.
+
+
+**Tabela**
+
+```{r, eval=FALSE}
+write.table(seus_dados, "nome_do_seu_arquivo.extensão", sep='|', na="ND", eol="\r\n")
+
+```
+
+Nesta caso, criamos um arquivo on o separador é "|", onde houver NA será inserido "ND" e teremos uma quebra de linha *eol* no formato do windows.
+
+**CSV e Separadores**
+
+```{r, eval=FALSE}
+
+write.csv(seus_dados, "nome_do_arquivo.csv") # Cria um arquivo csv
+
+write.csv(seus_dados, "nome_do_arquivo.csv", na = "NA") # Insere NA nos valores faltantes
+
+write_delim(seus_dados, "nome_do_arquivo.csv", delim = "|") #Cria um arquivo delimitado por "|"
+
+```
+
+**XLS**
+
+```{r, eval=FALSE}
+install.packages("WriteXLS") 
+
+library(WriteXLS)
+
+WriteXLS(seus_dados, "nome_do_arquivo.xls")
+
+WriteXLS(c(seus_dados1, seus_dados2), "nome_do_seu_arquivo.xls", SheetNames = c("nome_aba1", "nome_aba2")) #Cria um XLS com duas abas
+```
+
+
+
+# Visualização de Dados
+
+
+## Gráficos usando RBase
+
+Para criar alguns gráficos com o RBase, vamos usar o dataset "anscombe", já existente no R.
+
+*Plot*
+
+Por *default* o comando plot faz um gráfico de pontos, como o abaixo.
+
+```{r}
+attach(anscombe)
+plot(x1,y1) 
+```
+```{r}
+plot(x1,y1, xlab = "Meu eixo x", ylab = "Meu eixo y", main = "Meu gráfico de dispersão", sub = "Subtítulo do meu gráfico")
+
+#ylab = Nome do eixo y
+#xlab = Nome do eixo x
+#main = Título do gráfico
+#sub = Subtítulo do gráfico
+```
+
+Podemos adicionar outros parâmetros ao gráfico com o comando "type":
+
+type = "p" - pontos,
+type = "l" - linhas,
+type = "b" - (both) ambos linhas e pontos,
+type = "h" - ‘histograma’ (ou ‘high-density’) de linhas verticais,
+type = "n" - não plota nada.
+
+*Além desses, existem outros "type's", digite help(plot) e você verá mais opções.*
+
+```{r}
+attach(mtcars)
+
+plot(x1, type="l") #linhas
+
+plot(x1, type = "b") #linhas e pontos
+
+plot(x2,y2,type="h") #linhas verticais
+
+plot(x1, type="n") #não plota nada
+
+
+```
+
+
+Criando figuras com mais de um gráfico.
+
+par(mfrow=c(numero de linhas,numero de colunas))
+
+```{r}
+attach(anscombe)
+par(mfrow=c(2,2)) #2 linhas e 2 colunas
+
+plot(x1)
+
+plot(x2)
+
+plot(x3)
+
+plot(x4)
+
+```
+
+
+
+*Abline ( )*
+
+```{r}
+attach(anscombe)
+
+plot(x1,y1)
+
+abline(lm(y1~x1), col="blue") #Insere uma linha a partir de uma regressão linear
+
+```
+
+
+*Boxplot*
+
+```{r}
+boxplot(count ~ spray, data = InsectSprays, col = "blue", main= "Meu Boxplot")
+```
+
+*Histograma*
+
+```{r}
+hist(iris$Petal.Length, ylab = "Frequência", xlab = "Comprimento da Pétala", main = "Histograma", sub="Meu histograma")
+
+
+```
+
+## Gráficos usando o pacote ggplot2
+
+![Ilustração Allison Horst https://twitter.com/allison_horst](ManualR/imagens/allisonggplot.png)
+
+# Estatística
+
+## Teste de Hipóteses
+
+## Análise Discriminante
+
+# Algoritmos
+
+## Regressão Logística
+
+## KNN
+
+# Referências e Links úteis
+
+http://rstudio-pubs-static.s3.amazonaws.com/261838_71b13475011340ab94e9c51d8e462080.html
+
+https://dplyr.tidyverse.org/
+
+http://material.curso-r.com/manip/
+
+https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html
+
+OLIVEIRA, Paulo Felipe de; GUERRA, Saulo; MCDONNEL, Robert. Ciência de Dados com R – Introdução. Brasília: Editora IBPAD, 2018.
+
+R e RStudio, Análise Real. Disponível em: <https://analisereal.com/2015/01/20/r-e-rstudio-2/> Acesso em: 10 jan. 2019.
+
+GARRETT, Garrett; HADLEY, Wickham. R for Data Science: Visualize. Model. Transform. Tidy and Import Data.. [S. l.]: O'REILLY, 2017. E-book. Disponível em: <https://r4ds.had.co.nz/index.html>
+
+
+https://bookdown.org/wevsena/curso_r_tce/curso_r_tce.html#instalando-pacotes-no-r #consulta|Apagar depois, ou não!
+Ponte brauniana****
+
+Matched Markets - Ferramenta Google
