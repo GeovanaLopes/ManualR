@@ -145,36 +145,43 @@ Veremos abaixo alguns cálculos matemáticos e estátisticos básicos:
 
 
 ```{r}
+
 # Soma
 1+4
 ```
 
 ```{r}
+
 # Subtração
 5-2
 ```
 
 ```{r}
+
 # Multiplicação
 4*5
 ```
 
 ```{r}
+
 #Divisão
 20/4
 ```
 
 ```{r}
+
 #Potenciação
 5^2
 ```
 
 ```{r}
+
 # resto da divisão de 5 por 2
 5 %% 2   
 ```
 
 ```{r}
+
 # parte inteira da divisão de 5 por 4
 5 %/% 4  
 ```
@@ -193,15 +200,18 @@ log( 5, base = 2.578) # Logaritmo base 2.578
 ```
 
 ```{r}
+
 exp(2)### revisar
 ```
 
 ```{r}
+
 #Raíz Quadrada
 sqrt(9)
 ```
 
 ```{r}
+
 #Módulo ou valor absoluto
 abs(-5)
 ```
@@ -209,6 +219,7 @@ abs(-5)
 Para as funções abaixo, criaremos um pequeno conjunto de dados.
 
 ```{r}
+
 meus_dados1 <- c(1,2,3,4,5,6,7,8,9,10)
 
 meus_dados2 <- c(3,8,4,2,9,7,22,8,90,46)
@@ -216,26 +227,32 @@ meus_dados2 <- c(3,8,4,2,9,7,22,8,90,46)
 ```
 
 ```{r}
+#Essa função traz um resumo dos dados
+
 summary(meus_dados1)
 
-#Essa função traz um resumo dos dados
+
 ```
 
 ```{r}
+
 mean(meus_dados1) #Média
 ```
 
 ```{r}
+
 sd(meus_dados1) #Desvio Padrão
 ```
 
 ```{r}
+
 # Valor máximo e mínimo, respectivamente
 max(meus_dados1)
 min(meus_dados1)
 ```
 
 ```{r}
+
 median(meus_dados1)
 ```
 
@@ -245,15 +262,18 @@ quantile(meus_dados1)
 ```
 
 ```{r}
+
 cor(meus_dados1, meus_dados2) #Correlação linear entre os dados
 ```
 
 ```{r}
+
 var(meus_dados1) #Variância 
 
 ```
 
 ```{r}
+
 cov(meus_dados1, meus_dados2) #Covariância
 ```
 
@@ -261,6 +281,59 @@ cov(meus_dados1, meus_dados2) #Covariância
 O pacote "stats", nativo do R, traz inúmeras funções estatístiscas. Para consultar essa lista de funções, rode a linha *library(help = "stats")* e conheça todas elas.
 
 ## Funções
+
+Ao utilizar uma linguagem de programação você tem a vantagem de automatizar processos e isso será possível, além de outras formas, pela criação de funções.  
+Veremos alguns exemplos simples de como criar uma função e a partir disso você será capaz de criar a sua própia. A criatividade é livre!  
+
+A estrutura básica de uma função é a seguinte:
+
+```{r, eval=FALSE}
+nomeDaFuncao <- function(argumento1, argumento2, argumento3 = default3,  ...){
+  
+  # corpo da função: comando a serem realizados.
+  
+  return(resultado) # opcional
+}
+```
+
+* O comando function() indica a definição de uma função;
+
+* os valores dentro dos parênteses de function() são os argumentos (ou parâmetros) da função. Argumentos podem ter valores default (padrão), que são definidos com o sinal de igualdade (no caso arg3 tem como default o valor default3);
+
+* dentro das chaves está a estrutura da função, comando a serem realizados;
+
+* o comando return() encerra a função e retorna seu argumento. O return() é opcional, a função retorna o último objeto calculado caso ele não seja indicado.
+
+*Exemplo 1*
+
+```{r}
+# retorna o quadrado de um número
+quadrado <- function(x){
+  x^2
+}
+
+quadrado(5)
+```
+
+*Exemplo 2*
+
+```{r}
+#Função diz se número é ímpar ou par
+
+parimpar <- function(x){
+  if (x%%2 ==0){
+    print("Par")
+  }
+    
+  else {
+    print("Ímpar")
+  }
+    
+}
+
+parimpar(7)
+```
+
 
 ## Pacotes
 
@@ -277,6 +350,7 @@ Você pode instalar um *package* das seguintes formas:
 Pelo CRAN (Comprehensive R Archive Network), a forma mais usual;
 
 ```{r, eval=FALSE}
+
 install.packages("nome-do-pacote")
 ```
 
@@ -284,12 +358,14 @@ install.packages("nome-do-pacote")
 Pelo Github;
 
 ```{r, eval=FALSE}
+
 devtools::install_github("nome-do-repositorio/nome-do-pacote")
 ```
 
 
 E também via arquivo.
 ```{r, eval=FALSE}
+
 zip/.tar.gz: install.packages("C:/caminho/nome-do-pacote.zip", repos = NULL).
 ```
 
@@ -297,6 +373,7 @@ zip/.tar.gz: install.packages("C:/caminho/nome-do-pacote.zip", repos = NULL).
  Para carregar, basta dar o seguinte comando:
  
 ```{r, eval=FALSE, warning=FALSE}
+
 library(nome-do-pacote)
 ```
  
@@ -324,6 +401,7 @@ Com o R você consegue ler e manipular diversos tipos de arquivos, como por exem
 **Arquivos de texto**
 
 ```{r, eval=FALSE}
+
 texto <- readLines("Nome-do-seu-arquivo.txt") #Lê o seu aquivo de texto
 
 text02 <- readLines("Nome-do-seu-arquivoo.txt",2) #Lê apenas 2 linhas do seu arquivo de texto
@@ -337,6 +415,7 @@ text03  <- readLines(file.choose()) # O 'file.choose' abre a janela de arquivos 
 
 Lendo arquivos em formato de tabela.  
 ```{r, eval=FALSE}
+
 tabela1 <- read.table("Caminho-do-seu-arquivo.txt", header=TRUE, sep="\t") #Arquivo separado por TAB
 tabela2 <- read.table("Caminho-do-seu-arquivo.csv", header=TRUE, sep=",") #Aruivo separado por vírgula
 tabela3 <- read.table("Caminho-do-seu-arquivo.txt", skip=4, header=TRUE, sep="\t") #O argumento 'skip' indica quantas linhas pular, caso necessário
@@ -351,6 +430,7 @@ O CSV é um dos formatos de arquivos mais utilizados. Nesete formato o separador
 
 
 ```{r, eval=FALSE}
+
 arq <- read.csv("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ,
 
 arq2 <- read.csv2("Caminho-do-seu-arquivo.csv", header=TRUE) #Separador ;
@@ -364,6 +444,7 @@ head(arq) #Mostra as 6 primeiras linhas do seu arquivo, incluindo o cabeçalho
 **XLS**
 
 ```{r, eval=FALSE}
+
 install.packages("xlsx")
 library(xlsx)
 
@@ -373,6 +454,7 @@ data <- read.xlsx("Caminho-do-seu-arquivo.xlsx", "Nome-da-aba")
 **Excel**
 
 ```{r, eval=FALSE}
+
 exl <- read_excel("Caminho-do-seu-arquivo.xlsx", 
                  sheet = "nome-da-aba", 
                  col_types = c("date", "text", "text", "numeric", "numeric", "text"))
@@ -435,6 +517,7 @@ Esse comando cria uma ordenação, é como se o argumento da esquerda puxasse o 
 **Instalando e carregando o pacote**
 
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
+
 install.packages("tidyverse") # A forma mais fácil, pois instalada todos os recursos do tidyverse
 
 install.packages("dplyr") #Instala apenas o dplyr
@@ -448,6 +531,7 @@ library(dplyr) #Carregando o pacote
 Para testar algumas funções, vamos usar o dataset "iris" , que faz parte dos datasets pré-carregados do R.
 
 ```{r}
+
 dados <- iris #Carregando o dataset
 ```
 
@@ -455,6 +539,7 @@ dados <- iris #Carregando o dataset
 **Filter ( )**
 
 ```{r}
+
 virginic <- dados %>% filter(Species=="virginica") #Filtrando apenas virginica na coluna de espécies
  
 head(virginic) #Visualizando as 6 primeiras linhas
@@ -464,6 +549,7 @@ head(virginic) #Visualizando as 6 primeiras linhas
 **Select ( )**
 
 ```{r}
+
 selecionando <- dados %>% select(Species, Petal.Width) #Selecionando apenas 2 colunas
  
 head(selecionando) #Visualizando as 6 primeiras linhas
@@ -473,6 +559,7 @@ head(selecionando) #Visualizando as 6 primeiras linhas
 **Mutate ( )**
 
 ```{r}
+
 diferenca <- dados %>% mutate(dif = Sepal.Width - Petal.Width) #Criando uma coluna a partir de um cálculo, nova coluna "dif"
 
 head(diferenca) #Visualizando as 6 primeiras linhas
@@ -482,6 +569,7 @@ head(diferenca) #Visualizando as 6 primeiras linhas
 **Arrange ( )**
 
 ```{r}
+
 crescente <- dados %>% arrange(Petal.Width) #Ordenando de forma crescente a partir da coluna selecionada
 
 head(crescente) #Visualizando as 6 primeiras linhas
@@ -495,6 +583,7 @@ head(descrescente) #Visualizando as 6 primeiras linhas
 **Sumarise ( )**
 
 ```{r}
+
 suma <- dados %>% summarise(sumarizando=mean(Petal.Width))
 head(suma)
 
@@ -503,6 +592,7 @@ head(suma)
 **Count ( )**
 
 ```{r}
+
 contador <- dados %>% count(Species) #Contagem de espécies
 
 contador
@@ -512,6 +602,7 @@ contador
 **Group_by ( )**
 
 ```{r}
+
 grupo <- dados %>% group_by(Species)
 
 head(grupo)
@@ -520,6 +611,7 @@ head(grupo)
 *O group_by faz mais sentido quando utilizado em conjunto com outros comandos*
 
 ```{r}
+
 agrupando <- dados %>% group_by(Species) %>% summarise(media=mean(Petal.Width)) #Agrupanado especies e calculando a média da variável "Petal,Width"
 
 agrupando #Visualizando o agrupamento
@@ -558,6 +650,7 @@ Inicialmente, vamos criar um data frame pequenininho, com alguns NA's, só para 
 
 
 ```{r}
+
 dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,5,1,NA,4,1,NA),nota2=c(5,9,2,8,3,1,7))
 
 dat #Visualizando o dataframe
@@ -568,6 +661,7 @@ Agora precisamos investigar se há algum NA ou não.
 
 
 ```{r}
+
 which(is.na(dat)) #retona a posição das variáveis que contêm NA.
 ```
 ```{r}
@@ -585,6 +679,7 @@ Agora que já investigamos os nossos dados e percebemos que há de fato observa�
 
 
 ```{r, eval=FALSE}
+
 na.omit(dat) #Omite os NA's do data frame
 
 na.exclude(dat$nota) #Exclui os NA da voluna NOTA
@@ -598,6 +693,7 @@ Podemos também, substituir os valores faltantes pela média da coluna.
 
 
 ```{r,eval=FALSE}
+
 dat[is.na(dat$nota)] = mean(dat$nota,na.rm=TRUE) 
 dat
 ```
@@ -608,6 +704,7 @@ Substituindo por um número escolhido, nesse caso o 10.
 
 
 ```{r}
+
 dat$nota[is.na(dat$nota)] = 10 #As observações com NA agora serão o número 10.
 ```
 
@@ -615,6 +712,7 @@ Com uma abordagem um pouco mais avançada, poderíamos também, prever o valor d
 
 
 ```{r, warning=FALSE, message=FALSE}
+
 library(dplyr)
 
 dat <-data.frame(satisfacao = c("bom","muito bom","ruim","muito bom","bom","ruim","bom"),nota = c(4,9,1,NA,4,1,NA),nota2=c(5,9,2,8,5,1,7))
@@ -639,6 +737,7 @@ Agora que a leitura e manipulação de dados já foi feita, você já pode criar
 **Tabela**
 
 ```{r, eval=FALSE}
+
 write.table(seus_dados, "nome_do_seu_arquivo.extensão", sep='|', na="ND", eol="\r\n")
 
 ```
@@ -660,6 +759,7 @@ write_delim(seus_dados, "nome_do_arquivo.csv", delim = "|") #Cria um arquivo del
 **XLS**
 
 ```{r, eval=FALSE}
+
 install.packages("WriteXLS") 
 
 library(WriteXLS)
@@ -683,6 +783,7 @@ Para criar alguns gráficos com o RBase, vamos usar o dataset "anscombe", já ex
 Por *default* o comando plot faz um gráfico de pontos, como o abaixo.
 
 ```{r}
+
 attach(anscombe)
 plot(x1,y1) 
 ```
@@ -706,6 +807,7 @@ type = "n" - não plota nada.
 *Além desses, existem outros "type's", digite help(plot) e você verá mais opções.*
 
 ```{r}
+
 attach(mtcars)
 
 plot(x1, type="l") #linhas
@@ -755,12 +857,14 @@ abline(lm(y1~x1), col="blue") #Insere uma linha a partir de uma regressão linea
 *Boxplot*
 
 ```{r}
+
 boxplot(count ~ spray, data = InsectSprays, col = "blue", main= "Meu Boxplot")
 ```
 
 *Histograma*
 
 ```{r}
+
 hist(iris$Petal.Length, ylab = "Frequência", xlab = "Comprimento da Pétala", main = "Histograma", sub="Meu histograma")
 
 
@@ -770,6 +874,120 @@ hist(iris$Petal.Length, ylab = "Frequência", xlab = "Comprimento da Pétala", m
 
 ![Ilustração Allison Horst https://twitter.com/allison_horst](ManualR/imagens/allisonggplot.png)
 
+***Contextualizar o ggplot
+```{r,eval=FALSE}
+#Instalando o pacote
+
+install.packages("ggplot2")
+```
+
+```{r}
+#Carregando o pacote
+
+library(ggplot2)
+```
+
+
+*Gráfico de Pontos*
+```{r}
+
+ggplot(mtcars, aes(mpg, drat)) +
+  geom_point()
+
+```
+
+```{r}
+ggplot(mtcars, aes(mpg, drat)) +
+  geom_point() +
+  theme_classic() +
+  labs(
+    title = "Meu gráfico :)",
+    subtitle = "Gráfico de Dispersão",
+    x = "MPG",
+    y = "Drat",
+    caption = "Fonte de dados")
+
+
+```
+
+title = "Título do gráfico",
+subtitle = "Subtítulo do gráfico",
+x = "Nome do eixo x",
+y = "Nome eixo y",
+caption = "Fonte de dados"
+
+```{r}
+ggplot(mtcars, aes(mpg, drat)) +
+  geom_point() +
+  theme_classic() +
+  labs(
+    title = "Meu gráfico",
+    subtitle = "Gráfico de Dispersão",
+    x = "MPG",
+    y = "Drat",
+    caption = "Base de dados Mtcars") +
+  geom_hline(yintercept = 4, col="red")+
+  geom_vline(xintercept = 20, col="red")
+
+
+```
+
+geom_hline : insere uma linha horizontal;
+geom_vline : insere uma linha vertical.
+
+*Gráfico de Linhas*
+```{r}
+
+ggplot(mtcars, aes(mpg, drat)) +
+  geom_line() +
+  theme_classic() +
+  labs(
+    title = "Meu gráfico",
+    subtitle = "Gráfico de Linha",
+    x = "MPG",
+    y = "Drat",
+    caption = "Base de dados Mtcars")
+
+```
+
+
+*Boxplot*
+
+```{r}
+dfhair <- data.frame(HairEyeColor)
+
+ggplot(dfhair, aes(x = as.factor(Sex), y = Freq, 
+                   fill = Sex)) +
+  theme_minimal() +
+  geom_boxplot()+
+  labs(
+    title = "Meu gráfico",
+    subtitle = "Boxplot",
+    x = "Sex",
+    y = "Freq",
+    caption = "Base de dados Mtcars")
+
+
+```
+
+
+*Histograma*
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram()+
+  labs(
+    title = "Meu gráfico",
+    subtitle = "Histograma",
+    x = "Sepal.Length",
+    y = "Freq",
+    caption = "Base de dados Iris")
+
+
+```
+
+
+*Plotando vários gráficos na mesma imagem*
 # Estatística
 
 ## Teste de Hipóteses
@@ -795,6 +1013,8 @@ https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html
 OLIVEIRA, Paulo Felipe de; GUERRA, Saulo; MCDONNEL, Robert. Ciência de Dados com R – Introdução. Brasília: Editora IBPAD, 2018.
 
 R e RStudio, Análise Real. Disponível em: <https://analisereal.com/2015/01/20/r-e-rstudio-2/> Acesso em: 10 jan. 2019.
+
+Funções: Definição, argumentos e operadores binários, Análise Real. Disponível em: <https://analisereal.com/2015/04/04/funcoes-definicao-argumentos-e-operadores-binarios/> Acesso em: 20 nov. 2019.
 
 GARRETT, Garrett; HADLEY, Wickham. R for Data Science: Visualize. Model. Transform. Tidy and Import Data.. [S. l.]: O'REILLY, 2017. E-book. Disponível em: <https://r4ds.had.co.nz/index.html>
 
